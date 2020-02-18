@@ -26,7 +26,7 @@
                             $color = 'style="color:#FF0000"';
                         }
                         ?>
-                        <?php if (($row[0] != 'sulata_blank') && ($row[0] != 'sulata_settings') && ($row[0] != 'sulata_groups') && ($row[0] != 'sulata_user_groups')&& ($row[0] != 'sulata_links')) { ?>
+                        <?php if (($row[0] != 'sulata_blank') && ($row[0] != 'sulata_settings') && ($row[0] != 'sulata_groups') && ($row[0] != 'sulata_user_groups') && ($row[0] != 'sulata_links') && ($row[0] != 'sulata_qr_sessions')) { ?>
                             <label <?php echo $color; ?>>
                                 <input type="checkbox" <?php echo $chk; ?> name="table[]" value="<?= $row[0]; ?>"/>
                                 <?= $row[0]; ?>
