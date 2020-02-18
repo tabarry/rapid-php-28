@@ -536,8 +536,12 @@ function doHideMenusOnInOverlay() {
         }
         if ($('#side-outer-nav')) {
             $('#side-outer-nav').hide();
-            $('.mainbar').css('margin-left','0px');
+            $('.mainbar').css('margin-left', '0px');
 
         }
     }
+}
+//QR Login
+function loadurl(url) {
+    $('#authenticate').load(url);
 }
