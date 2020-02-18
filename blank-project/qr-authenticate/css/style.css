@@ -1,0 +1,15 @@
+body{
+    /*    background-color: teal;*/
+}
+p a{
+    color: #080808;
+    text-decoration: underline;
+}
+h4{
+    font-size: 150%;
+}
+.site-name{
+    font-size: 120%;
+    font-weight: bold;
+    padding-left: 20px;
+}
