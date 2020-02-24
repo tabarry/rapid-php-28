@@ -450,14 +450,17 @@ if (!function_exists('suDateFromDb')) {
 if (!function_exists('suCheckPagePermissions')) {
 
     function suCheckPagePermissions() {
-        global $permissionsExclude;
+        //You can override $thisfile by declaring a variable outside as $current_file_override = 'leads.php';
+        global $permissionsExclude, $current_file_override;
         $response = TRUE;
         //Get file name and segment
         $this_file = $_SERVER['SCRIPT_FILENAME'];
         $this_file = explode('/', $this_file);
         $this_file = end($this_file);
         $current_file = $this_file; //Name of current .php file
-
+        if ($current_file_override != '') {
+            $this_file = $current_file_override;
+        }
         if (!in_array($current_file, $permissionsExclude)) {
             $this_file = explode('.php', $this_file);
             $this_file = $this_file[0];
@@ -531,7 +534,6 @@ if (!function_exists('suCheckPagePermissions')) {
                     $permissions = json_decode($permissions, 1);
                     $access = array_merge($access, $permissions);
                 }
-                //$access = $access[0];
             }
             //If not super admin group, then check for permissions
             if (!in_array($getSettings['super_admin_group_id'], $groups_allowed)) {
@@ -597,7 +599,7 @@ if (!function_exists('checkLogin')) {
 
 //Check if logged in
     function checkLogin($checkFirstLogin = FALSE) {
-
+        global $current_file_override;
         if ($_SESSION[SESSION_PREFIX . 'user__ID'] == '') {
             $url = ADMIN_URL . 'login' . PHP_EXTENSION . '/';
             suPrintJs("parent.window.location.href='{$url}';");
@@ -949,11 +951,11 @@ if (!function_exists('suBarChart')) {
         }
         echo"
         <div>&nbsp;</div>    
-        <div><small>{$text}</small></div>
         <div $title $onclick style='width:{$width};height:20px;line-height:20px;border:1px solid #CCC;;background-color:#EEE;'>
-            <div style='width:{$percentValue};height:20px;line-height:20px;background-color:{$fillColor};{$cursor}'>
+            <div style='width:{$percentValue};height:18px;line-height:18px;background-color:{$fillColor};{$cursor}'>
             </div>
         </div>
+        <div style='font-size: 11px;'>{$text}</div>
         ";
     }
 
