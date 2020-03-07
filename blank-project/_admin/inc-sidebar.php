@@ -64,7 +64,7 @@
 
                                             <?php
                                             $max_top_menu_links_count = $max_top_menu_links_count + 1;
-                                            if ($max_top_menu_links_count == $getSettings['maximum_top_menu_links']) {
+                                            if ($max_top_menu_links_count == $getSettings['maximum_side_menu_links']) {
                                                 break;
                                             }
                                         }
@@ -95,7 +95,7 @@
 
                                             <?php
                                             $max_top_menu_links_count = $max_top_menu_links_count + 1;
-                                            if ($max_top_menu_links_count == $getSettings['maximum_top_menu_links']) {
+                                            if ($max_top_menu_links_count == $getSettings['maximum_side_menu_links']) {
                                                 break;
                                             }
                                         }
