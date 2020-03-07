@@ -1,25 +1,25 @@
 <?php include('includes/include.php'); ?>
 <?php
 
-$functions .="<?php
+$functions .= "<?php
      ";
 $sql = "USE " . $_POST['db'];
-mysqli_query($cn,$sql) or die(mysqli_error($cn));
+mysqli_query($cn, $sql) or die(mysqli_error($cn));
 
 $sql = "SHOW TABLES FROM " . $_POST['db'];
-$rs = mysqli_query($cn,$sql) or die(mysqli_error($cn));
+$rs = mysqli_query($cn, $sql) or die(mysqli_error($cn));
 while ($row = mysqli_fetch_array($rs)) {
     $arr = '';
     $arr2 = '';
 
-    $functions .="\$dbs_" . $row[0] . " =
+    $functions .= "\$dbs_" . $row[0] . " =
         array(";
     $sql2 = "SHOW FULL FIELDS FROM " . $row[0];
-    $rs2 = mysqli_query($cn,$sql2) or die(mysqli_error($cn));
+    $rs2 = mysqli_query($cn, $sql2) or die(mysqli_error($cn));
     while ($row2 = mysqli_fetch_array($rs2)) {
 
         if ($row2[4] == 'UNI') {
-            $uniqueArray.= "'" . $row2[0] . "',";
+            $uniqueArray .= "'" . $row2[0] . "',";
         }
         $arr2 = '';
         if ($row2[3] == 'NO') {
@@ -123,7 +123,7 @@ while ($row = mysqli_fetch_array($rs)) {
         } else {
             $max = $max;
         }
-        $arr.="
+        $arr .= "
             '" . $row2[0] . "_req'=>'" . $req . "',
             '" . $row2[0] . "_title'=>'" . makeFieldLabel($row2[0]) . "',
             '" . $row2[0] . "_max'=>'" . $max . "',
@@ -133,7 +133,7 @@ while ($row = mysqli_fetch_array($rs)) {
             $arr2
             ";
     }mysqli_free_result($rs2);
-    $functions.="
+    $functions .= "
         $arr
         );
 
@@ -143,6 +143,9 @@ $uniqueArray = "\$uniqueArray = array(" . substr($uniqueArray, 0, -1) . ");";
 
 $dbStructurePath = $sitePath . '/includes/db-structure.php';
 suWrite($dbStructurePath, $functions . $uniqueArray);
+//Hit the links page in the generated application folder
+$links_hit_url = 'http://localhost/'.$_POST['folder'].'/_admin/links.php/';
+echo "<img width='0' height='0' src='".$links_hit_url."'/>";
 echo "
 <script>
 top.$('#result').html(top.$('#result').html()+'DB structure generated.<br/>');
