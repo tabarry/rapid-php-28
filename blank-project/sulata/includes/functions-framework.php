@@ -1205,10 +1205,17 @@ if (!function_exists('suGeneratePassword')) {
     function suGeneratePassword() {
         $colors = array('white', 'yellow', 'pink', 'red', 'orange', 'blue', 'green', 'purple', 'brown', 'black');
         $rand = rand(0, sizeof($colors) - 1);
-        $rand = $colors[$rand];
         $time = time();
-        $time = substr($time, -4);
-        $password = $rand . $time;
+        if (($rand % 2) == 0) {
+            $time = substr($time, -4);
+        } else {
+            $time = substr($time, -5);
+        }
+        $rand = ucfirst($colors[$rand]);
+        $special_characters = array('!', '#', '$', '%', '&', '*');
+        $rand2 = rand(0, sizeof($special_characters) - 1);
+        $special_character = $special_characters[$rand2];
+        $password = $rand . $special_character . $time;
         return $password;
     }
 
