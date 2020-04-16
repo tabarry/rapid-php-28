@@ -29,7 +29,7 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
     define('BASE_URL', LOCAL_URL);
     define('ADMIN_URL', BASE_URL . '_admin/');
     define('ADMIN_SUBMIT_URL', ADMIN_URL);
-    define('PING_URL', BASE_URL . 'static/ping.html');
+    define('PING_URL', BASE_URL . 'sulata/static/ping.html');
     define('NOSCRIPT_URL', BASE_URL . 'sulata/static/no-script.html');
     define('ACCESS_DENIED_URL', BASE_URL . 'sulata/static/access-denied.html');
     define('ADMIN_UPLOAD_PATH', '../files/');
@@ -57,7 +57,7 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
     define('BASE_URL', WEB_URL);
     define('ADMIN_URL', BASE_URL . '_admin/');
     define('ADMIN_SUBMIT_URL', ADMIN_URL);
-    define('PING_URL', BASE_URL . 'sulata/ping.html');
+    define('PING_URL', BASE_URL . 'sulata/static/ping.html');
     define('NOSCRIPT_URL', BASE_URL . 'sulata/static/no-script.html');
     define('ACCESS_DENIED_URL', BASE_URL . 'sulata/static/access-denied.html');
     define('ADMIN_UPLOAD_PATH', '../files/');
