@@ -231,7 +231,7 @@ if (!function_exists('suUnstrip')) {
 /* Print JS */
 if (!function_exists('suPrintJS')) {
 
-    function suPrintJS($str) {
+    function suPrintJS($js) {
 
         echo "
 <script type=\"text/javascript\">
