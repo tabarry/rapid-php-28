@@ -16,8 +16,15 @@ $pageName = 'Manage Settings';
 $pageTitle = 'Manage Settings';
 
 //Make select statement. The $SqlFrom is also used in $sqlP below.
+//Show all records to Super Admin and only Public records to all others
+if ($_SESSION[SESSION_PREFIX . 'user__ID'] == $getSettings['super_admin_user_id']) {
+    $extra_sql = '';
+} else {
+    $extra_sql = " AND setting__Scope='Public' ";
+}
+
 $sqlSelect = "SELECT setting__ID,setting__Setting,setting__Value ";
-$sqlFrom = " FROM sulata_settings WHERE setting__dbState='Live' AND setting__Scope='Public' ";
+$sqlFrom = " FROM sulata_settings WHERE setting__dbState='Live' {$extra_sql} ";
 $sql = $sqlSelect . $sqlFrom;
 
 //Download CSV
