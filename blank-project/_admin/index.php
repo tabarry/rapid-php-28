@@ -6,6 +6,10 @@ include('../sulata/includes/db-structure.php');
 $pageName = 'Home';
 $pageTitle = 'Home';
 checkLogin();
+//Delete order QR Sessions
+$sql = "DELETE FROM sulata_qr_sessions WHERE qr_session__UID='' AND qr_session__Date<=(SELECT DATE_SUB('" . date('y-m-d') . "', INTERVAL 2 DAY))";
+suQuery($sql);
+//==  
 /* rapidSql */
 ?>
 <!DOCTYPE html>
