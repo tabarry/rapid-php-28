@@ -235,7 +235,7 @@ if (!function_exists('suPrintJS')) {
 
         echo "
 <script type=\"text/javascript\">
-		{$str}
+		{$js}
 		</script>
 ";
     }
