@@ -96,21 +96,41 @@ function explodeExtract($str, $toExplode, $excludeArray) {
 function buildWww($path, $selected = "") {
 
     if ($handle = opendir($path)) {
+        $options = array();
         /* This is the correct way to loop over the directory. */
         while (false !== ($entry = readdir($handle))) {
-            if (!strstr($entry, ".")) {
-                if ($entry == $_SESSION[SESSION_PREFIX . 'folder']) {
+            array_push($options, $entry);
+        }
+        closedir($handle);
+
+        sort($options);
+        for ($i = 0; $i <= sizeof($options); $i++) {
+            if (!strstr($options[$i], ".")&& $options[$i]!='') {
+                if ($options[$i] == $_SESSION[SESSION_PREFIX . 'folder']) {
                     $sel = "selected";
                 } else {
                     $sel = "";
                 }
-                $opt .= "<option $sel>$entry</option>\n";
+                $opt .= "<option $sel>$options[$i]</option>\n";
             }
         }
-
-        closedir($handle);
     }
+
     return $opt;
+}
+
+/* Print JS */
+if (!function_exists('suPrintJS')) {
+
+    function suPrintJS($js) {
+
+        echo "
+<script type=\"text/javascript\">
+		{$js}
+		</script>
+";
+    }
+
 }
 
 //Make table DD

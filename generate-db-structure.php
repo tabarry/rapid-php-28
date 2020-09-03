@@ -18,7 +18,7 @@
                         <?PHP
                         //Select database
                         $sql = "SHOW DATABASES";
-                        $rs = mysqli_query($cn,$sql) or die(mysqli_error($cn));
+                        $rs = mysqli_query($cn, $sql) or die(mysqli_error($cn));
                         while ($row = mysqli_fetch_array($rs)) {
                             ?>
                             <option>
@@ -34,7 +34,8 @@
                     <select name="folder" id="folder">
                         <option value="">Select..</option>
                         <?php echo buildWww("../"); ?>
-                    </select>      
+                    </select>  
+
                     <p>
                         <input type="submit" name="Submit" value="Generate" />
                     </p>

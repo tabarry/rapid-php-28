@@ -13,7 +13,7 @@ if ($do == 'login') {
     $validateAsArray = array('user__Name_validateas' => 'required', 'user__Phone_validateas' => 'required', 'user__Email_validateas' => 'email', 'user__Password_validateas' => 'required');
     //---------
 
-    $sql = "SELECT user__ID, user__UID FROM sulata_users WHERE user__Email='" . suStrip($_POST['user__Email']) . "' AND user__Password='" . crypt(suStrip($_POST['user__Password']), suStrip($_POST['user__Email'])) . "' AND user__dbState='Live' AND user__Status='Active'";
+    $sql = "SELECT user__ID, user__UID FROM sulata_users WHERE user__Email='" . suStrip($_POST['user__Email']) . "' AND user__Password='" . crypt(suStrip($_POST['user__Password']), API_KEY) . "' AND user__dbState='Live' AND user__Status='Active'";
 
     $result = suQuery($sql);
     if ($result['num_rows'] == 1) {
@@ -44,7 +44,7 @@ if ($do == 'retrieve') {
     if ($result['num_rows'] == 1) {
         $temp_password = suGeneratePassword();
         //Update password
-        $sql2 = "UPDATE sulata_users SET user__Password='" . crypt($temp_password, $_POST['user__Email']) . "',user__Password_Reset='Yes' WHERE user__ID='" . $row['user__ID'] . "'";
+        $sql2 = "UPDATE sulata_users SET user__Password='" . crypt($temp_password, API_KEY) . "',user__Password_Reset='Yes' WHERE user__ID='" . $row['user__ID'] . "'";
         suQuery($sql2);
         $email = file_get_contents('../sulata/mails/lost-password.html');
         $email = str_replace('#NAME#', suUnstrip($row['user__Name']), $email);
