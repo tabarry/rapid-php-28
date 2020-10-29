@@ -202,6 +202,7 @@ function suWrite($path, $content) {
 //Copy blank project
 //directory = www folder name
 function recurse_copy($src, $dst, $directory, $db, $db_user, $db_password) {
+    global $apiKey;
     $dir = opendir($src);
     @mkdir($dst);
     while (false !== ( $file = readdir($dir))) {
@@ -210,7 +211,7 @@ function recurse_copy($src, $dst, $directory, $db, $db_user, $db_password) {
                 recurse_copy($src . '/' . $file, $dst . '/' . $file, $directory, $db, $db_user, $db_password);
             } else {
                 if ($file == 'config.php') {
-                    $apiKey = substr('x' . uniqid() . uniqid() . uniqid(), 0, 32);
+                    //$apiKey = substr('x' . uniqid() . uniqid() . uniqid(), 0, 32);
                     $apiKey = str_replace('a', '_', $apiKey);
                     $content = file_get_contents($src . '/' . $file);
                     $content = str_replace("#DB_NAME#", $db, $content);

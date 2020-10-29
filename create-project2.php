@@ -6,6 +6,7 @@
 @mkdir('../' . $_POST['directory']);
 //Copy folder
 //function recurse_copy($src,$dst,$directory,$db,$db_user,$db_password)
+$apiKey = substr('x' . uniqid() . uniqid() . uniqid(), 0, 32);
 recurse_copy('./blank-project', '../' . $_POST['directory'], $_POST['directory'], $_POST['db'], $_POST['db_user'], $_POST['db_password']);
 //Set cookie
 setcookie('ck_db_user', $_POST['db_user'], time() + 14400000);
@@ -28,7 +29,7 @@ for ($i = 0; $i <= sizeof($sql); $i++) {
 //Update default_user_password and UID
 $user_email = $_POST['directory'] . "@sulata.com.pk";
 $user_password = $_POST['default_user_password'];
-$sql2 = "UPDATE sulata_users SET user__UID='" . uniqid() . "',user__Email='" . $_POST['directory'] . "@sulata.com.pk',user__Password='" . crypt($user_password, $user_email) . "' WHERE user__ID='1'";
+$sql2 = "UPDATE sulata_users SET user__UID='" . uniqid() . "',user__Email='" . $_POST['directory'] . "@sulata.com.pk',user__Password='" . crypt($user_password, $apiKey) . "' WHERE user__ID='1'";
 mysqli_query($cn, $sql2) or die(mysqli_error($cn));
 //Update project name
 $sql2 = "UPDATE sulata_settings SET setting__Value='" . ucwords($_POST['directory']) . "' WHERE setting__ID='1'";
